@@ -82,6 +82,19 @@ h2{font-family:var(--serif);font-weight:900;font-size:clamp(26px,5.6vw,34px);lin
 .ov-row .stay{color:var(--muted);font-size:14px}
 .pass{margin-top:14px;background:var(--denim-soft);border-left:4px solid var(--denim);padding:12px 16px;border-radius:0 8px 8px 0;font-size:15px}
 
+/* 航班 */
+.flights{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:14px}
+.flight-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;border-top:4px solid var(--denim)}
+.flight-card .dir{font-size:13px;color:var(--muted);margin:0}
+.flight-card .route{font-family:var(--serif);font-weight:900;font-size:22px;margin:2px 0 6px}
+.flight-card .times{display:flex;align-items:baseline;gap:10px;font-variant-numeric:tabular-nums;font-size:20px;font-weight:700;margin:0}
+.flight-card .times span{color:var(--muted);font-size:14px;font-weight:400}
+.flight-card .when{margin:4px 0 0;font-size:14px;color:var(--muted)}
+.stop.flight::before{background:var(--denim);border-color:var(--denim)}
+.stop.flight .card{border-color:var(--denim);box-shadow:inset 4px 0 0 var(--denim)}
+.badge.f{background:var(--denim)}
+.dark-fix{}
+
 /* 每日 */
 .day-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
 .day-num{font-family:var(--serif);font-weight:900;font-size:clamp(44px,10vw,64px);line-height:1;color:var(--momiji)}
@@ -154,6 +167,10 @@ footer{padding:40px 0 56px;color:var(--muted);font-size:13px}
     <h2>總覽</h2>
     <p class="lede">點日期可跳到當天行程。</p>
     <div class="overview" id="ov"></div>
+    <div class="flights">
+      <div class="flight-card"><p class="dir">去程</p><p class="route">桃園 → 岡山</p><p class="times">11:10 <span>→</span> 14:35</p><p class="when">11/14（六）・桃園機場第一航廈</p></div>
+      <div class="flight-card"><p class="dir">回程</p><p class="route">岡山 → 桃園</p><p class="times">15:25 <span>→</span> 17:30</p><p class="when">11/18（三）・岡山桃太郎空港</p></div>
+    </div>
     <p class="pass">已買岡山周遊券：Day 2的後樂園、岡山城，以及Day 3的倉敷美觀地區（到觀光案內所兌換）。</p>
   </section>
 
@@ -176,6 +193,7 @@ footer{padding:40px 0 56px;color:var(--muted);font-size:13px}
     <h2>交通資料來源</h2>
     <p class="lede">移動時間和票價來自下列頁面，步行時間依地圖距離估算，出發前請再確認。</p>
     <ul class="sources">
+      <li><a href="https://www.tymetro.com.tw/tymetro-new/tw/_pages/travel-guide/timetable-A3" target="_blank" rel="noopener">桃園捷運 A3新北產業園區站時刻表（官網）</a></li>
       <li><a href="https://www.pref.okayama.jp/site/2963/1062613.html" target="_blank" rel="noopener">岡山後樂園 アクセス（岡山縣）</a></li>
       <li><a href="https://www.okayama-kanko.jp/mice/reserve/12137" target="_blank" rel="noopener">後楽ホテル（岡山縣觀光連盟）</a></li>
       <li><a href="https://www.travel.co.jp/stay/hotel/okayama-koraku-hotel-826959/" target="_blank" rel="noopener">後楽ホテル 入退房時間</a></li>
@@ -197,9 +215,14 @@ footer{padding:40px 0 56px;color:var(--muted);font-size:13px}
 const DAYS = [
   {id:"day1", date:"11/14", wd:"六", title:"抵達日", area:"岡山站周邊",
    stay:"VIA INN 岡山",
-   lede:"16:00抵達後只排一頓晚餐，其餘時間留給休息。",
+   lede:"早上8:05出門，11:10起飛，14:35抵達岡山。晚上只排一頓晚餐，其餘時間留給休息。",
    stops:[
-    {t:"16:00", n:"抵達岡山，到VIA INN 岡山check-in", tr:"若從機場來：利木津巴士到岡山站約30分，約1,000円", note:"第一晚，11/15退房"},
+    {t:"8:05", n:"出門，搭計程車到機捷新北產業園區站（A3）", tr:"計程車約20分", note:"預留約15分鐘進站、刷卡、等車的緩衝", warn:1},
+    {t:"8:40", n:"機捷直達車 A3 → A12 機場第一航廈", tr:"直達車（紫色）約26分，9:06抵達", note:"直達車約每15分一班（:10、:25、:40、:55）。錯過的話搭8:55那班，約9:21到，離起飛不到2小時，要加快腳步。11/14是週六，出門前用桃園捷運官網確認假日時刻表"},
+    {t:"約9:06", n:"抵達桃園機場第一航廈", st:"約2小時", note:"報到、托運行李、出境。起飛前約2小時到機場"},
+    {t:"11:10", n:"桃園 → 岡山 起飛", f:1, note:"14:35抵達岡山桃太郎空港"},
+    {t:"14:35", n:"抵達岡山桃太郎空港", tr:"入境、領行李後，搭利木津巴士到岡山站約30分，約1,000円"},
+    {t:"16:00", n:"到VIA INN 岡山check-in", tr:"從岡山站步行", note:"第一晚，11/15退房"},
     {t:"約17:00", n:"Little Okayama", tr:"岡山站內，步行即到", st:"約15～20分", note:"9:00～20:00。蜂蜜拿鐵（熱的）、濾掛咖啡伴手禮、咖啡玉"},
     {t:"18:00", n:"焼肉ひだや 本町店", tr:"從岡山站步行約5～8分", st:"約1.5小時", note:"岡山站東側本町", b:1},
     {t:"晚餐後", n:"YOURS 岡山站店／天滿屋HAPPY'S 岡山站前店", tr:"從餐廳步行約5～8分", st:"約30～40分", note:"買零食和隔天早餐。想逛久一點可去永旺夢樂城（超市到23:00）"}
@@ -254,7 +277,9 @@ const DAYS = [
     {t:"10:00", n:"永旺夢樂城 岡山", tr:"從STAND1-1步行約10分，或走岡山站地下通道", st:"約2小時", note:"Tully's 10:00開，其他店出發前確認。免稅品先放手提行李"},
     {t:"約12:35", n:"到岡山站西口21番乘車處", tr:"從永旺步行約10分", note:"最晚12:40前到。下一班是14:50，15:20才到機場，來不及", warn:1},
     {t:"12:55", n:"搭岡電巴士（特急）去機場", tr:"約30分，1,000円，13:25到機場", note:"IC卡可付（儲值要用Hareca）。這班錯過的備案是計程車", warn:1},
-    {t:"約13:25", n:"岡山桃太郎空港", st:"約2小時", note:"先辦免稅稅關確認，再報到、托運行李、出境。15:25起飛"}
+    {t:"約13:25", n:"岡山桃太郎空港", st:"約2小時", note:"先辦免稅稅關確認，再報到、托運行李、出境"},
+    {t:"15:25", n:"岡山 → 桃園 起飛", f:1, note:"17:30抵達桃園機場"},
+    {t:"17:30", n:"抵達桃園機場，搭機捷回家", tr:"A12第一航廈搭直達車到A3新北產業園區站約26分，再搭計程車約20分", note:"入境、領行李後再看時刻表，直達車約每15分一班"}
   ]}
 ];
 
@@ -277,7 +302,8 @@ const CHECKS = [
   "後樂園秋季早開園是不是7:00",
   "JR吉備線班次較少（約每小時2班），先查好時刻表",
   "吉備津神社御朱印受付時間（各來源寫到14:30或到16:00），電話086-287-4111",
-  "周遊券有效期限、倉敷觀光案內所的兌換地點與營業時間，以及券的使用條件"
+  "周遊券有效期限、倉敷觀光案內所的兌換地點與營業時間，以及券的使用條件",
+  "11/14（週六）機捷假日時刻表，A3往機場直達車8:40那班是否照常"
 ];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -308,10 +334,10 @@ document.getElementById("days").innerHTML = DAYS.map((d,i)=>`
     <p class="lede">${esc(d.lede)}</p>
     <ol class="timeline">
       ${d.stops.map(s=>`
-      <li class="stop${s.b?' booked':''}">
+      <li class="stop${s.b?' booked':''}${s.f?' flight':''}">
         <div class="time">${esc(s.t)}</div>
         <div class="card">
-          <h3>${esc(s.n)}${s.b?'<span class="badge">已訂位</span>':''}</h3>
+          <h3>${esc(s.n)}${s.b?'<span class="badge">已訂位</span>':''}${s.f?'<span class="badge f">航班</span>':''}</h3>
           ${(s.tr||s.st)?`<dl class="facts">
             ${s.tr?`<dt>交通</dt><dd>${esc(s.tr)}</dd>`:''}
             ${s.st?`<dt>停留</dt><dd>${esc(s.st)}</dd>`:''}
