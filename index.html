@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>岡山5天4夜行程（11/14～11/18）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wall:#F2F3F1; --surface:#FFFFFF; --ink:#22262B; --muted:#5E646B;
+  --tile:#2B2F33; --line:#D9DCD8;
+  --momiji:#B4362B; --momiji-soft:#F6E3DF;
+  --denim:#2F4D70; --denim-soft:#E3EAF2;
+  --bizen:#7B4E31;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --serif:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --wall:#17191C; --surface:#202327; --ink:#E9EAE7; --muted:#A3A8AD;
+    --tile:#0E0F11; --line:#34383D;
+    --momiji:#E0675A; --momiji-soft:#3A2321;
+    --denim:#8FB0D6; --denim-soft:#1E2A38;
+    --bizen:#C99B78;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --wall:#17191C; --surface:#202327; --ink:#E9EAE7; --muted:#A3A8AD;
+  --tile:#0E0F11; --line:#34383D;
+  --momiji:#E0675A; --momiji-soft:#3A2321;
+  --denim:#8FB0D6; --denim-soft:#1E2A38;
+  --bizen:#C99B78;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--wall);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-text-size-adjust:100%}
+a{color:var(--denim)}
+a:focus-visible,button:focus-visible,input:focus-visible+span{outline:2px solid var(--momiji);outline-offset:2px;border-radius:4px}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+
+/* Hero: 倉敷白壁與海鼠壁 */
+.hero{position:relative;background:var(--surface);overflow:hidden}
+.hero .wrap{padding-top:56px;padding-bottom:40px}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(64px,16vw,132px);line-height:1;margin:0;letter-spacing:.04em}
+.hero .sub{font-family:var(--serif);font-weight:600;font-size:clamp(20px,4.4vw,28px);margin:14px 0 0}
+.hero .meta{color:var(--muted);margin:10px 0 0;font-size:15px}
+.namako{height:72px;background-color:var(--tile);
+  background-image:
+    linear-gradient(45deg,transparent 46%,var(--wall) 46%,var(--wall) 54%,transparent 54%),
+    linear-gradient(-45deg,transparent 46%,var(--wall) 46%,var(--wall) 54%,transparent 54%);
+  background-size:36px 36px}
+
+/* Sticky day nav */
+.daynav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--wall);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--wall)}
+.daynav ol{list-style:none;margin:0 auto;padding:10px 20px;display:flex;gap:8px;overflow-x:auto;max-width:860px;scrollbar-width:none}
+.daynav ol::-webkit-scrollbar{display:none}
+.daynav a{display:block;text-decoration:none;color:var(--ink);padding:6px 12px;border-radius:999px;border:1px solid var(--line);white-space:nowrap;font-size:14px;background:var(--surface)}
+.daynav a .d{font-weight:700;margin-right:4px}
+.daynav a.today{background:var(--momiji);border-color:var(--momiji);color:#fff}
+
+section{padding:40px 0 8px}
+h2{font-family:var(--serif);font-weight:900;font-size:clamp(26px,5.6vw,34px);line-height:1.3;margin:0 0 6px}
+.lede{color:var(--muted);margin:0 0 20px}
+
+/* 總覽 */
+.overview{display:grid;gap:10px}
+.ov-row{display:grid;grid-template-columns:96px 1fr;gap:12px;background:var(--surface);border-radius:10px;padding:14px 16px;text-decoration:none;color:inherit;border:1px solid var(--line)}
+.ov-row:hover{border-color:var(--muted)}
+.ov-date{font-family:var(--serif);font-weight:900;font-size:22px;line-height:1.2}
+.ov-date small{display:block;font-family:var(--sans);font-weight:500;font-size:13px;color:var(--muted)}
+.ov-row p{margin:0;font-size:15px}
+.ov-row .stay{color:var(--muted);font-size:14px}
+.pass{margin-top:14px;background:var(--denim-soft);border-left:4px solid var(--denim);padding:12px 16px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* 每日 */
+.day-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.day-num{font-family:var(--serif);font-weight:900;font-size:clamp(44px,10vw,64px);line-height:1;color:var(--momiji)}
+.timeline{list-style:none;margin:0;padding:0;position:relative}
+.timeline::before{content:"";position:absolute;left:79px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.stop{display:grid;grid-template-columns:68px 1fr;gap:24px;padding:10px 0;position:relative}
+.stop::before{content:"";position:absolute;left:74px;top:22px;width:12px;height:12px;border-radius:50%;background:var(--wall);border:2px solid var(--muted)}
+.stop.booked::before{background:var(--momiji);border-color:var(--momiji)}
+.time{font-weight:700;font-size:15px;text-align:right;padding-top:12px;font-variant-numeric:tabular-nums}
+.card{background:var(--surface);border-radius:10px;padding:14px 16px;border:1px solid var(--line)}
+.stop.booked .card{border-color:var(--momiji);box-shadow:inset 4px 0 0 var(--momiji)}
+.card h3{margin:0;font-size:17px;line-height:1.5;font-weight:700}
+.badge{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--momiji);border-radius:4px;padding:1px 7px;margin-left:6px;vertical-align:2px}
+.facts{margin:8px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:14px}
+.facts dt{color:var(--muted);white-space:nowrap}
+.facts dd{margin:0}
+.note{margin:8px 0 0;font-size:14px;color:var(--muted)}
+
+/* 備案 */
+.alts{display:grid;gap:10px}
+.alt{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px;display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:start}
+.alt h3{margin:0;font-size:16px}
+.alt p{margin:0;grid-column:1/-1;font-size:14px;color:var(--muted)}
+.tag{font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap}
+.tag.backup{background:var(--denim-soft);color:var(--denim)}
+.tag.next{background:var(--momiji-soft);color:var(--bizen)}
+.tag.cut{background:var(--line);color:var(--muted);text-decoration:line-through}
+
+/* 待確認 */
+.checks{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.checks li+li{border-top:1px solid var(--line)}
+.checks label{display:flex;gap:12px;padding:12px 16px;cursor:pointer;font-size:15px}
+.checks input{position:absolute;opacity:0;width:1px;height:1px}
+.box{flex:0 0 20px;height:20px;margin-top:3px;border:2px solid var(--muted);border-radius:4px;display:grid;place-items:center}
+.checks input:checked+.box{background:var(--denim);border-color:var(--denim)}
+.checks input:checked+.box::after{content:"";width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.checks input:checked~.txt{color:var(--muted);text-decoration:line-through}
+.progress{font-size:14px;color:var(--muted);margin:-10px 0 14px}
+
+.sources{padding-left:1.2em;font-size:14px}
+.sources li{margin:4px 0}
+footer{padding:40px 0 56px;color:var(--muted);font-size:13px}
+
+@media (max-width:560px){
+  .timeline::before{left:7px}
+  .stop{grid-template-columns:1fr;gap:4px;padding-left:28px}
+  .stop::before{left:2px;top:15px}
+  .time{text-align:left;padding-top:8px}
+  .ov-row{grid-template-columns:76px 1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>岡山</h1>
+    <p class="sub">5天4夜，11/14～11/18</p>
+    <p class="meta">兩個人，住兩間飯店，3筆訂位，全程搭JR和電車</p>
+  </div>
+  <div class="namako" aria-hidden="true"></div>
+</header>
+
+<nav class="daynav" aria-label="日期">
+  <ol id="daynav"></ol>
+</nav>
+
+<main class="wrap">
+  <section id="overview">
+    <h2>總覽</h2>
+    <p class="lede">點日期可跳到當天行程。</p>
+    <div class="overview" id="ov"></div>
+    <p class="pass">已買岡山周遊券：Day 2的後樂園、岡山城，以及Day 3的倉敷美觀地區（到觀光案內所兌換）。</p>
+  </section>
+
+  <div id="days"></div>
+
+  <section id="alts">
+    <h2>備案與已刪除的景點</h2>
+    <p class="lede">6個景點沒排進正式行程：3個當備案，1個留到下次，2個因公休或交通問題刪除。</p>
+    <div class="alts" id="altlist"></div>
+  </section>
+
+  <section id="checks">
+    <h2>出發前要再確認的事</h2>
+    <p class="lede">營業時間來自Google地圖（2026-11-08查詢），店家可能臨時調整。勾選會記在這台裝置上。</p>
+    <p class="progress" id="progress"></p>
+    <ul class="checks" id="checklist"></ul>
+  </section>
+
+  <section id="sources">
+    <h2>交通資料來源</h2>
+    <p class="lede">移動時間和票價來自下列頁面，步行時間依地圖距離估算，出發前請再確認。</p>
+    <ul class="sources">
+      <li><a href="https://www.pref.okayama.jp/site/2963/1062613.html" target="_blank" rel="noopener">岡山後樂園 アクセス（岡山縣）</a></li>
+      <li><a href="https://www.okayama-kanko.jp/mice/reserve/12137" target="_blank" rel="noopener">後楽ホテル（岡山縣觀光連盟）</a></li>
+      <li><a href="https://www.travel.co.jp/stay/hotel/okayama-koraku-hotel-826959/" target="_blank" rel="noopener">後楽ホテル 入退房時間</a></li>
+      <li><a href="https://www.nta.co.jp/jrodekakenet/1trip/kurashiki_higaeri.htm" target="_blank" rel="noopener">倉敷日帰りモデルコース（JR約17分、步行約15分）</a></li>
+      <li><a href="https://travelist.jp/airport_OKJ/guide/posts/p1289" target="_blank" rel="noopener">岡山到倉敷的運賃330円</a></li>
+      <li><a href="https://ekitan.com/transit/fare/sf-2236/st-6502" target="_blank" rel="noopener">岡山到尾道的時間與運賃</a></li>
+      <li><a href="https://rurubu.jp/andmore/spot/80034482" target="_blank" rel="noopener">千光寺 アクセス（るるぶ）</a></li>
+      <li><a href="https://okayama-kido.co.jp/bus/kuukou.html" target="_blank" rel="noopener">岡山桃太郎空港 リムジンバス時刻表（2026/10/25～2027/1/31，岡電バス）</a></li>
+      <li><a href="https://banzokubiology.com/kibitsu-jinja-time/" target="_blank" rel="noopener">吉備津神社 受付時間</a></li>
+      <li><a href="https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00021.html" target="_blank" rel="noopener">消費稅免稅制度 リファンド方式（觀光廳）</a></li>
+      <li><a href="https://www.centrair.jp/tzh/taxrefund/" target="_blank" rel="noopener">退稅手續流程範例：中部國際機場（先在海關自助機辦理，再托運行李）</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="wrap">原始文件：2026年11月8日，@江權倬</footer>
+
+<script>
+const DAYS = [
+  {id:"day1", date:"11/14", wd:"六", title:"抵達日", area:"岡山站周邊",
+   stay:"VIA INN 岡山",
+   lede:"16:00抵達後只排一頓晚餐，其餘時間留給休息。",
+   stops:[
+    {t:"16:00", n:"抵達岡山，到VIA INN 岡山check-in", tr:"若從機場來：利木津巴士到岡山站約30分，約1,000円", note:"第一晚，11/15退房"},
+    {t:"約17:00", n:"Little Okayama", tr:"岡山站內，步行即到", st:"約15～20分", note:"9:00～20:00。蜂蜜拿鐵（熱的）、濾掛咖啡伴手禮、咖啡玉"},
+    {t:"18:00", n:"焼肉ひだや 本町店", tr:"從岡山站步行約5～8分", st:"約1.5小時", note:"岡山站東側本町", b:1},
+    {t:"晚餐後", n:"YOURS 岡山站店／天滿屋HAPPY'S 岡山站前店", tr:"從餐廳步行約5～8分", st:"約30～40分", note:"買零食和隔天早餐。想逛久一點可去永旺夢樂城（超市到23:00）"}
+  ]},
+  {id:"day2", date:"11/15", wd:"日", title:"後樂園、岡山城、吉備津神社", area:"岡山市區",
+   stay:"退房VIA INN，入住後樂飯店",
+   lede:"早上7:00後樂園開園就入場，下午去吉備津神社，傍晚換到後樂飯店。",
+   stops:[
+    {t:"約7:00", n:"VIA INN退房，行李寄放在櫃檯，直接出發去後樂園", st:"約20分", note:"退房時請櫃檯寄放行李，傍晚回來拿"},
+    {t:"7:30～10:30", n:"岡山後樂園", tr:"岡山站東口1番乗り場搭岡電巴士，約10～15分到「後樂園前」；或路面電車（東山行）約5～8分到「城下」，再走約10分", st:"約2.5～3小時", note:"秋季7:00開園（出發前確認），持周遊券入園（原價500円）"},
+    {t:"10:30～11:30", n:"岡山城", tr:"從後樂園走月見橋，步行約5～10分", st:"約1小時", note:"持周遊券入場"},
+    {t:"約11:40", n:"岡山神社", tr:"從岡山城步行約500公尺，約7分", st:"約20～30分", note:"9:00～16:30，有御朱印和桃子御守"},
+    {t:"12:30", n:"Megu（しゃぶしゃぶ・すき焼き）", tr:"從岡山神社步行約5分", st:"約1～1.5小時", note:"約在表町一帶", b:1},
+    {t:"約13:20", n:"and green tea", tr:"從Megu步行約5～7分", st:"約30分", note:"表町商店街內，週日11:00～18:00。手刷抹茶、抹茶冰淇淋"},
+    {t:"約14:00出發", n:"吉備津神社", tr:"步行約15分到岡山站（或搭路面電車），JR吉備線約17分到吉備津駅，再走約10分", st:"約1小時", note:"御朱印受付時間各來源不一（到14:30或到16:00），想拿建議先電話確認。11/15是七五三，人較多"},
+    {t:"17:00後", n:"回市區拿行李，到後樂飯店check-in", tr:"JR吉備線回岡山約17分，到VIA INN拿行李，再到後樂飯店（岡山站東口步行約5分）"},
+    {t:"晚餐", n:"自由", tr:"從飯店步行", st:"約1.5小時", note:"備案：焼肉はちや 本町店（17:30開）、400℃ Pizza（要先訂位）"}
+  ]},
+  {id:"day3", date:"11/16", wd:"一", title:"倉敷", area:"倉敷美觀地區",
+   stay:"後樂飯店",
+   lede:"11/16是週一，大原美術館休館，這天改走運河、老街、逛街和阿智神社。",
+   stops:[
+    {t:"約9:30", n:"JR岡山站到倉敷", tr:"JR山陽本線普通約17分，330円"},
+    {t:"約10:00", n:"倉敷美觀地區", tr:"倉敷駅步行約10～15分", st:"約1小時", note:"倉敷川沿岸散步賞楓。先到觀光案內所兌換周遊券的美觀地區優惠券（兌換地點以周遊券說明為準）"},
+    {t:"11:00", n:"梅之木味噌豬排（午餐）", tr:"在阿智，站與美觀之間，步行約5～10分", st:"約1小時，排隊30～60分另計", note:"週四公休，建議開門就去。備選：小豆島拉麵HISHIO、SHIRAKABE咖哩麵包"},
+    {t:"約13:00", n:"Kurashiki Denim Street", tr:"美觀地區內步行約5～10分", st:"約1小時", note:"牛仔褲和牛仔小物"},
+    {t:"約14:00", n:"林源十郎商店、Blue Trick Bikanchiku Ten", tr:"同區步行約5分", st:"約1小時", note:"逛街、買伴手禮"},
+    {t:"約15:00", n:"阿智神社", tr:"步行約5～10分，要爬坡", st:"約40分", note:"俯瞰美觀地區和楓葉"},
+    {t:"約16:00", n:"下午茶（三選一）", tr:"步行約5～10分", st:"約40分", note:"MATCHA STAND KURASHIKI、Ivy West Gate、三宅商店カフェ工房 土屋邸。點心：金賞可樂餅。伴手禮：和果子 廣榮堂（確認是哪間分店）"},
+    {t:"約17:15", n:"搭JR回岡山", tr:"約17:00離開美觀地區，步行到倉敷駅約10～15分，JR約17分，330円", note:"18:00前回到岡山"},
+    {t:"19:00", n:"居酒屋岡山農業高校レストラン", tr:"從岡山站步行約8～10分", st:"約1.5～2小時", note:"岡山站東側", b:1}
+  ]},
+  {id:"day4", date:"11/17", wd:"二", title:"尾道", area:"尾道千光寺",
+   stay:"後樂飯店",
+   lede:"週二去尾道千光寺，早上8點多出發，晚餐自由。",
+   stops:[
+    {t:"約8:30", n:"岡山站出發", tr:"JR山陽本線普通往尾道約1小時27分，單程1,340円，視班次可能需轉車", note:"先去Tully's（岡山站旁，7:00開）外帶紅茶"},
+    {t:"約10:00", n:"抵達尾道駅", tr:"搭おのみちバス約5分到「長江口」", st:"約20分"},
+    {t:"約10:15", n:"千光寺山纜車", tr:"長江口站下車即到，纜車約3分", st:"約30分", note:"9:00～17:15，每15分一班，來回700円"},
+    {t:"約11:00", n:"千光寺", tr:"從山頂駅步行約10分，之後沿文學小徑走下山", st:"約1.5小時", note:"9:00～17:00無休"},
+    {t:"約12:30", n:"午餐：尾道拉麵", tr:"下山步行", st:"約1小時", note:"清單沒有存店家，之後可再挑"},
+    {t:"約14:00", n:"Karasawa Ice Cream", tr:"離尾道站約500公尺，步行約7分", st:"約20分", note:"10:00～17:00，週三公休（週二有開）"},
+    {t:"約14:30", n:"尾道本通商店街、貓之細道", tr:"步行", st:"約1.5小時", note:"老街慢慢逛"},
+    {t:"約16:30", n:"搭JR回岡山", tr:"JR山陽本線約1小時27分，單程1,340円", note:"晚餐自由。焼肉はちや週二公休，11/17不能去"}
+  ]},
+  {id:"day5", date:"11/18", wd:"三", title:"購物與離開", area:"岡山站、機場",
+   stay:"退房，12:55搭巴士去機場（15:25起飛）",
+   lede:"15:25起飛，搭12:55的巴士去機場，早上可以吃貝果、逛永旺夢樂城。",
+   stops:[
+    {t:"約8:00", n:"後樂飯店退房", note:"標準退房11:00。行李帶著逛，或放岡山站投幣式置物櫃"},
+    {t:"約8:30", n:"STAND1-1 貝果早餐", tr:"從後樂飯店步行約10分", st:"約40分", note:"野田屋町，8:00～18:00"},
+    {t:"10:00", n:"永旺夢樂城 岡山", tr:"從STAND1-1步行約10分，或走岡山站地下通道", st:"約2小時", note:"Tully's 10:00開，其他店出發前確認。免稅品先放手提行李"},
+    {t:"約12:35", n:"到岡山站西口21番乘車處", tr:"從永旺步行約10分", note:"最晚12:40前到。下一班是14:50，15:20才到機場，來不及", warn:1},
+    {t:"12:55", n:"搭岡電巴士（特急）去機場", tr:"約30分，1,000円，13:25到機場", note:"IC卡可付（儲值要用Hareca）。這班錯過的備案是計程車", warn:1},
+    {t:"約13:25", n:"岡山桃太郎空港", st:"約2小時", note:"先辦免稅稅關確認，再報到、托運行李、出境。15:25起飛"}
+  ]}
+];
+
+const ALTS = [
+  {n:"焼肉はちや 本町店", s:"backup", r:"Day 2晚餐，17:30開，週二公休"},
+  {n:"400℃ Pizza", s:"backup", r:"Day 2或Day 4晚餐，網友說要先訂位，Google沒顯示營業時間"},
+  {n:"400℃ mori no machi（永旺美食街）", s:"backup", r:"Day 5午餐，不是清單裡存的那間，營業時間要再確認"},
+  {n:"鷲羽山 第一展望台", s:"next", r:"這次改去尾道"},
+  {n:"名代炸豬排 Kappa", s:"cut", r:"在倉敷，週一、週二公休，11/16和11/17都去不了"},
+  {n:"招猫美術館", s:"cut", r:"在市區北邊山上，不開車很難去"}
+];
+const TAG = {backup:"備案", next:"下次", cut:"刪除"};
+
+const CHECKS = [
+  "岡山機場有沒有免稅手續端末、報到櫃檯幾點關閉（依航空公司）",
+  "VIA INN能否在退房後寄放行李到傍晚，以及櫃檯幾點前能拿",
+  "11/16倉敷各家店週一有沒有營業（大原美術館休館）",
+  "11/15是七五三，吉備津神社人會比較多",
+  "400℃ Pizza能否訂位",
+  "後樂園秋季早開園是不是7:00",
+  "JR吉備線班次較少（約每小時2班），先查好時刻表",
+  "吉備津神社御朱印受付時間（各來源寫到14:30或到16:00），電話086-287-4111",
+  "周遊券有效期限、倉敷觀光案內所的兌換地點與營業時間，以及券的使用條件"
+];
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const telify = s => esc(s).replace(/(086-287-4111)/, '<a href="tel:0862874111">$1</a>');
+
+// 今天是哪一天
+const now = new Date();
+const md = (now.getMonth()+1) + "/" + now.getDate();
+const todayId = (now.getFullYear()===2026 && DAYS.find(d=>d.date===md)) ? DAYS.find(d=>d.date===md).id : null;
+
+document.getElementById("daynav").innerHTML =
+  `<li><a href="#overview">總覽</a></li>` +
+  DAYS.map((d,i)=>`<li><a href="#${d.id}" class="${d.id===todayId?'today':''}"${d.id===todayId?' aria-current="date"':''}><span class="d">Day ${i+1}</span>${d.date}（${d.wd}）</a></li>`).join("") +
+  `<li><a href="#checks">待確認</a></li>`;
+
+document.getElementById("ov").innerHTML = DAYS.map((d,i)=>{
+  const booked = d.stops.filter(s=>s.b).map(s=>`${s.t} ${s.n}`);
+  return `<a class="ov-row" href="#${d.id}">
+    <div class="ov-date">${d.date}<small>Day ${i+1}（${d.wd}）</small></div>
+    <div><p><strong>${esc(d.title)}</strong></p>
+    <p>${booked.length ? "訂位：" + esc(booked.join("、")) : "訂位：無"}</p>
+    <p class="stay">住宿：${esc(d.stay)}</p></div></a>`;
+}).join("");
+
+document.getElementById("days").innerHTML = DAYS.map((d,i)=>`
+  <section id="${d.id}">
+    <div class="day-head"><span class="day-num">${i+1}</span><h2>${d.date}（${d.wd}）${esc(d.title)}</h2></div>
+    <p class="lede">${esc(d.lede)}</p>
+    <ol class="timeline">
+      ${d.stops.map(s=>`
+      <li class="stop${s.b?' booked':''}">
+        <div class="time">${esc(s.t)}</div>
+        <div class="card">
+          <h3>${esc(s.n)}${s.b?'<span class="badge">已訂位</span>':''}</h3>
+          ${(s.tr||s.st)?`<dl class="facts">
+            ${s.tr?`<dt>交通</dt><dd>${esc(s.tr)}</dd>`:''}
+            ${s.st?`<dt>停留</dt><dd>${esc(s.st)}</dd>`:''}
+          </dl>`:''}
+          ${s.note?`<p class="note"${s.warn?' style="color:var(--momiji);font-weight:500"':''}>${esc(s.note)}</p>`:''}
+        </div>
+      </li>`).join("")}
+    </ol>
+  </section>`).join("");
+
+document.getElementById("altlist").innerHTML = ALTS.map(a=>`
+  <div class="alt"><h3>${esc(a.n)}</h3><span class="tag ${a.s}">${TAG[a.s]}</span><p>${esc(a.r)}</p></div>`).join("");
+
+// 待確認清單（記在本機）
+let done = {};
+try { done = JSON.parse(localStorage.getItem("okayama-checks")||"{}") || {}; } catch(e) { done = {}; }
+const list = document.getElementById("checklist");
+list.innerHTML = CHECKS.map((c,i)=>`
+  <li><label><input type="checkbox" data-i="${i}"${done[i]?' checked':''}><span class="box" aria-hidden="true"></span><span class="txt">${telify(c)}</span></label></li>`).join("");
+const prog = () => {
+  const n = list.querySelectorAll("input:checked").length;
+  document.getElementById("progress").textContent = `已確認 ${n}／${CHECKS.length} 項`;
+};
+list.addEventListener("change", e=>{
+  if (!e.target.matches("input")) return;
+  done[e.target.dataset.i] = e.target.checked;
+  try { localStorage.setItem("okayama-checks", JSON.stringify(done)); } catch(err) {}
+  prog();
+});
+prog();
+
+// 若網址帶 #day 錨點，載入後捲到該處
+if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
+</script>
+</body>
+</html>
